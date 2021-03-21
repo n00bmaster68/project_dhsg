@@ -60,6 +60,7 @@ def preprocess_data(titles):
 		if word not in stop_words and word[-1] not in stop_words:
 			bag_of_word.append(word)
 
+	bag_of_word = [i for i in bag_of_word if len(i) >= 3]
 	bag_of_word = dict(Counter(bag_of_word))
 
 	return bag_of_word

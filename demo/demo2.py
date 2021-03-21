@@ -6,9 +6,10 @@ import time
 if __name__ == "__main__":
 	
 	f = open("large_data.txt")
-	# f = open("small_data.txt")
 	lines = f.readlines()
 	f.close()
+
+	
 
 	titles = []
 	for line in lines:

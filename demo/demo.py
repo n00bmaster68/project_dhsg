@@ -4,7 +4,7 @@ from natural_language_processing import get_name_of_object_in_image
 import time
 
 if __name__ == "__main__":
-	filename= "test.jpg"
+	filename= "test_img/test1.jpg"
 	titles  = get_titles_on_web(filename)
 	print(len(titles))
 

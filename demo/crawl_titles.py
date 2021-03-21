@@ -23,10 +23,10 @@ def get_titles(url):
 	except:
 		return real_titles
 
-def get_titles_on_web (filePath = "demo.jpg"):
+def get_titles_on_web (filePath = "test_img/demo.jpg"):
 	try:
 		url = get_url(filePath)
-		# print(url)
+		print(url)
 		response = requests.get(url, headers = {'User-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.83 Safari/537.36'}, allow_redirects = True)
 		soup = BeautifulSoup(response.content, 'html.parser')
 		title_link_part = soup.find_all("div", {"class": "hdtb-mitem"})
