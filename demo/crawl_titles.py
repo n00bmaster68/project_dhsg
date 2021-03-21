@@ -18,20 +18,20 @@ def get_titles(url):
 		real_titles.append(title.text)
 	try:
 		tag = soup.find_all("a", {"id": "pnnext"})
-		real_titles.extend(get_titles('http://www.google.com' + tag[0]['href']))
+		real_titles.extend(get_titles('http://www.google.com' + tag[0]['href'] + "&num=1000"))
 		return real_titles
 	except:
 		return real_titles
 
-def get_titles_on_web (filePath = "test_img/demo.jpg"):
+def get_titles_on_web (filePath = "test_img/test.jpg"):
 	try:
 		url = get_url(filePath)
-		print(url)
+		# print(url)
 		response = requests.get(url, headers = {'User-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.83 Safari/537.36'}, allow_redirects = True)
 		soup = BeautifulSoup(response.content, 'html.parser')
 		title_link_part = soup.find_all("div", {"class": "hdtb-mitem"})
-		title_page_url = 'http://www.google.com' + title_link_part[0].a['href']
-		
+		title_page_url = 'http://www.google.com' + title_link_part[0].a['href'] + "&num=1000"
+		# print(title_page_url)
 		titles = get_titles(title_page_url)
 		# print(titles)
 		return titles
