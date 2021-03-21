@@ -33,5 +33,6 @@ if __name__ == "__main__":
 		result_sets.append(result_set)
 		print(name1, ",time: ", p_time1)
 		print(name2[0][0], ",time: ", p_time2)
+		time.sleep(10)
 
 print(tabulate(result_sets, headers=["Ngrams", "Time", "TF IDF", "Time"]))
