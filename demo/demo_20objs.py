@@ -5,17 +5,22 @@ import time
 import os
 from tabulate import tabulate
 
+
 if __name__ == "__main__":
 	result_sets = [] 
+	
 	
 	for filename in os.listdir("test_img"):
 		result_set = []
 		print(filename)
 		titles  = get_titles_on_web("test_img/" + filename)
 		print(len(titles))
+		if titles == 0:
+			pass
 
 		start1 = time.time()
 		name1   = get_name_of_object_in_image(titles)
+
 		p_time1 = time.time() - start1
 
 		start2 = time.time()
@@ -25,6 +30,7 @@ if __name__ == "__main__":
 		name2 = name2.to_dict()
 		name2 = list(name2.keys())
 
+		result_set.append(filename)
 		result_set.append(name2[0][0])
 		result_set.append(p_time2)
 		result_set.append(name1)
@@ -32,7 +38,8 @@ if __name__ == "__main__":
 
 		result_sets.append(result_set)
 		print(name1, ",time: ", p_time1)
-		print(name2[0][0], ",time: ", p_time2)
-		time.sleep(10)
+		print(name2[0][0], ",time: ", p_time2, "\n\n")
+		# time.sleep(5)
+		
 
-print(tabulate(result_sets, headers=["Ngrams", "Time", "TF IDF", "Time"]))
+print(tabulate(result_sets, headers=["Image", "Ngrams", "Time", "TF IDF", "Time"]))
