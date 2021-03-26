@@ -2,6 +2,7 @@ from ngrams import predict_main_word
 from crawl_titles import get_titles_on_web
 from natural_language_processing import get_name_of_object_in_image
 import time
+import random
 
 if __name__ == "__main__":
 	
