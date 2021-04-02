@@ -22,7 +22,7 @@ def get_url (filePath):
 
 j = 0
 def get_titles(url, header):
-	print(f"j = {j}")
+	# print(f"j = {j}")
 	real_titles = []
 	response = requests.get(url, headers = header, allow_redirects = True)
 	soup = BeautifulSoup(response.content, 'html.parser')

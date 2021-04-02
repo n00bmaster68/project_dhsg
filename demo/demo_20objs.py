@@ -1,6 +1,6 @@
 from ngrams import predict_main_word
 from crawl_titles import get_titles_on_web
-from natural_language_processing import get_name_of_object_in_image
+from TF_IDF import get_name_of_object_in_image
 import time
 import os
 from tabulate import tabulate
