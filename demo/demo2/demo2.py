@@ -4,10 +4,14 @@ from TF_IDF import get_name_of_object_in_image
 import time
 import random
 from tabulate import tabulate
+from collections import Counter
+import numpy as np
+import matplotlib.pyplot as plt
 
 if __name__ == "__main__":
 	
-	f = open("../data1.txt") #data.txt
+	# f = open("../data1.txt") #data.txt
+	f = open("data.txt") #data.txt
 	lines = f.readlines()
 	f.close()
 
@@ -25,19 +29,30 @@ if __name__ == "__main__":
 	headers = ["TF-IDF", "Time","N-GRAMS", "Time", "Percentage of data"]
 	res = []
 
+	percentage = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+
+	tfidf_res = []
+	ngrams_res = []
+
+	tfidf_time = []
+	ngrams_time = []
+
 	for i in range (0, 10):	
 		start1 = time.time()
 		name1   = get_name_of_object_in_image(samples[i])
 		p_time1 = time.time() - start1
+		tfidf_res.append(name1)
+		tfidf_time.append(p_time1)
 
 		start2 = time.time()
 		name2 = predict_main_word(samples[i])
 		p_time2 = time.time() - start2
+		ngrams_time.append(p_time2)
 
 		name2 = name2.to_dict()
 		name2 = list(name2.keys())
-		# print("Key: ", name1, "|| time: ", p_time1)
-		# print("Key: ", name2[0][0], "|| time: ", p_time2)
+		ngrams_res.append(name2[0][0])
+		
 		res.append(name1)
 		res.append(p_time1)
 		res.append(name2[0][0])
@@ -47,4 +62,39 @@ if __name__ == "__main__":
 		res = []
 
 	print(tabulate(results, headers=headers))
+
+
 	# print(results)
+	elements_count_tfidf = Counter(tfidf_res)
+	elements_count_ngrams = Counter(tfidf_res)
+
+	most_common_word_tfidf = max(elements_count_tfidf, key=elements_count_tfidf.get)
+	most_common_word_ngrams = max(elements_count_ngrams, key=elements_count_ngrams.get)
+
+	# print('most_common_word_tfidf', most_common_word_tfidf)
+	# print('most_common_word_ngrams', most_common_word_ngrams)
+
+	for i in range (len(tfidf_res)):
+		if tfidf_res[i] != most_common_word_tfidf:
+			tfidf_time[i] = -1/10
+		if ngrams_res[i] != most_common_word_ngrams:
+			ngrams_time[i] = -1/10
+
+
+	barWidth = 0.25
+
+	bars1 = [12, 30, 1, 8, 22]
+	bars2 = [28, 6, 16, 5, 10]
+
+	r1 = np.arange(len(tfidf_time))
+	r2 = [x + barWidth for x in r1]
+
+	plt.bar(r1, ngrams_time, color='#7f6d5f', width=barWidth, edgecolor='white', label='N-GRAMS')
+	plt.bar(r2, tfidf_time, color='#557f2d', width=barWidth, edgecolor='white', label='TFIDF')
+
+	plt.xlabel('Methods', fontweight='bold')
+	plt.xticks([r + barWidth for r in range(len(bars1))], ['A', 'B', 'C', 'D', 'E'])
+	 
+	# Create legend & Show graphic
+	plt.legend()	
+	plt.show()

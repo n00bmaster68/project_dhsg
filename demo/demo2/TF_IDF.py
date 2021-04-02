@@ -1,7 +1,7 @@
 from collections import Counter
 import math
 
-f = open("stop_words.txt.txt") #data.txt
+f = open("stop_words.txt") #data.txt
 lines = f.readlines()
 f.close()
 

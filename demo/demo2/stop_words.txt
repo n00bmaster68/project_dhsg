@@ -1,4 +1,4 @@
-feminising
+﻿feminising
 venice
 delude
 carnying
@@ -11,13 +11,21 @@ reanimating
 writhen
 satisfies
 cauterises
+carolina
 wanton
+onto
+with
 mildew
+local
 crystallises
 manumits
 counselling
 ravishing
 excorciates
+east
+south
+west 
+north
 animal
 animals
 river
@@ -39297,6 +39305,7 @@ methylating
 swages
 highsticking
 cove
+'
 defogs
 friended
 justles
