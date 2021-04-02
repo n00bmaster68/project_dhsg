@@ -64,40 +64,40 @@ if __name__ == "__main__":
 	print(tabulate(results, headers=headers))
 
 	# # print(results)
-	# elements_count_tfidf = Counter(tfidf_res)
-	# elements_count_ngrams = Counter(tfidf_res)
+	elements_count_tfidf = Counter(tfidf_res)
+	elements_count_ngrams = Counter(tfidf_res)
 
-	# most_common_word_tfidf = max(elements_count_tfidf, key=elements_count_tfidf.get)
-	# most_common_word_ngrams = max(elements_count_ngrams, key=elements_count_ngrams.get)
+	most_common_word_tfidf = max(elements_count_tfidf, key=elements_count_tfidf.get)
+	most_common_word_ngrams = max(elements_count_ngrams, key=elements_count_ngrams.get)
 
-	# # print('most_common_word_tfidf', most_common_word_tfidf)
-	# # print('most_common_word_ngrams', most_common_word_ngrams)
+	# print('most_common_word_tfidf', most_common_word_tfidf)
+	# print('most_common_word_ngrams', most_common_word_ngrams)
 
-	# for i in range (len(tfidf_res)):
-	# 	if tfidf_res[i] != most_common_word_tfidf:
-	# 		tfidf_time[i] = -1/10
-	# 	if ngrams_res[i] != most_common_word_ngrams:
-	# 		ngrams_time[i] = -1/10
+	for i in range (len(tfidf_res)):
+		if tfidf_res[i] != most_common_word_tfidf:
+			tfidf_time[i] = -1/10
+		if ngrams_res[i] != most_common_word_ngrams:
+			ngrams_time[i] = -1/10
 
-	# res_mpl = [] 
-	# for i in range(len(tfidf_res)):
-	# 	res1 = ngrams_res[i] + "/" + tfidf_res[i]
-	# 	res_mpl.append(res1) 
+	res_mpl = [] 
+	for i in range(len(tfidf_res)):
+		res1 = ngrams_res[i] + "/" + tfidf_res[i]
+		res_mpl.append(res1) 
 
-	# barWidth = 0.5
+	barWidth = 0.5
 
-	# bars1 = [12, 30, 1, 8, 22]
-	# bars2 = [28, 6, 16, 5, 10]
+	bars1 = [12, 30, 1, 8, 22]
+	bars2 = [28, 6, 16, 5, 10]
 
-	# r1 = np.arange(len(tfidf_time))
-	# r2 = [x + barWidth for x in r1]
+	r1 = np.arange(len(tfidf_time))
+	r2 = [x + barWidth for x in r1]
 
-	# plt.bar(r1, ngrams_time, color='#7f6d5f', width=barWidth, edgecolor='white', label='N-GRAMS')
-	# plt.bar(r2, tfidf_time, color='#557f2d', width=barWidth, edgecolor='white', label='TFIDF')
+	plt.bar(r1, ngrams_time, color='#7f6d5f', width=barWidth, edgecolor='white', label='N-GRAMS')
+	plt.bar(r2, tfidf_time, color='#557f2d', width=barWidth, edgecolor='white', label='TFIDF')
 
-	# plt.xlabel('Methods', fontweight='bold')
-	# plt.xticks(np.arange(len(res_mpl)), res_mpl)
+	plt.xlabel('Methods', fontweight='bold')
+	plt.xticks(np.arange(len(res_mpl)), res_mpl)
 	 
-	# # Create legend & Show graphic
-	# plt.legend()	
-	# plt.show()
+	# Create legend & Show graphic
+	plt.legend()	
+	plt.show()
