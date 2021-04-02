@@ -72,6 +72,12 @@ def preprocess_data(titles):
 
 def get_name_of_object_in_image(titles):
 	preprocess_data(titles)
-
 	tf_idf_dict = tf_idf(titles)
-	return max(tf_idf_dict, key=tf_idf_dict.get)
+	res = max(tf_idf_dict, key=tf_idf_dict.get)
+	global tf_dict
+	global idf_dict
+	global processed_titles
+	tf_dict = {}
+	idf_dict = {}
+	processed_titles = []
+	return res

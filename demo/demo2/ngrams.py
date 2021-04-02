@@ -13,7 +13,9 @@ def basic_clean(text):
 	return [wnl.lemmatize(word) for word in words if word not in stopwords] #trả về các từ không trong stop words, đã được các kí tự đặc biệt và đưa từ về dạng cơ bản
 
 def predict_main_word(titles):
+	
 	text = ""
 	for title in titles:
 		text += title.replace("\n", "") + " " #đưa tất cả titles vào text
-	return (pd.Series(nltk.ngrams(basic_clean(text), 1)).value_counts())[:1] #tiền xử lí text qua hàm basic_clean, sau đó sử dụng nrams để lấy ra từ có trọng số lớn nhất.
+	clean_text = basic_clean(text)
+	return (pd.Series(nltk.ngrams(clean_text, 1)).value_counts())[:1] #tiền xử lí text qua hàm basic_clean, sau đó sử dụng nrams để lấy ra từ có trọng số lớn nhất.
