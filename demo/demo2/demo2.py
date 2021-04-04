@@ -37,7 +37,15 @@ if __name__ == "__main__":
 	tfidf_time = []
 	ngrams_time = []
 
+	predict_main_word(["warm up"]) 
+	# vì do ngrams lần đầu chạy phải load WordNetLemmatizer nên lần đầu chạy sẽ lâu hơn thực tế
+	# còn các lần thực thi sau mạng đã có trong bộ nhớ đệm 
+	# vì vậy các lần thực thi mới có thời gian thực sự khách quan
+	# vì thế mới cần dòng 40 
+
 	for i in range (0, 10):	
+		# predict_main_word(samples[i])
+
 		start1 = time.time()
 		name1   = get_name_of_object_in_image(samples[i])
 		p_time1 = time.time() - start1
@@ -72,12 +80,6 @@ if __name__ == "__main__":
 
 	# print('most_common_word_tfidf', most_common_word_tfidf)
 	# print('most_common_word_ngrams', most_common_word_ngrams)
-
-	for i in range (len(tfidf_res)):
-		if tfidf_res[i] != most_common_word_tfidf:
-			tfidf_time[i] = -1/10
-		if ngrams_res[i] != most_common_word_ngrams:
-			ngrams_time[i] = -1/10
 
 	res_mpl = [] 
 	for i in range(len(tfidf_res)):
