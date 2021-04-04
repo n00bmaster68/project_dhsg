@@ -15,6 +15,7 @@ def basic_clean(text):
 def ngrams(sequence, n):
     history = []
     sequence = iter(sequence)
+    
     while n > 1:
         try:
             next_item = next(sequence)
