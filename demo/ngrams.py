@@ -16,6 +16,7 @@ def ngrams(sequence, n):
     history = []
     sequence = iter(sequence)
     
+    # while loop được dùng để lấy 2 grams, 3 grams trở lên
     while n > 1:
         try:
             next_item = next(sequence)
@@ -26,13 +27,13 @@ def ngrams(sequence, n):
 
     for item in sequence:
         history.append(item)
-        yield tuple(history)
-        del history[0]
+        yield tuple(history) #yield tương tự như return nhưng nó giúp trả về chuỗi kết quả nhanh hơn, nhẹ hơn 
+        del history[0] #xoá phần tử đầu thì phần tử thứ 2 là phần tử đầu
 
 def predict_main_word(titles):
 	
 	text = ""
 	for title in titles:
 		text += title.replace("\n", "") + " " #đưa tất cả titles vào text
-	clean_text = basic_clean(text)
-	return (pd.Series(ngrams(clean_text, 1)).value_counts())[:1] #tiền xử lí text qua hàm basic_clean, sau đó sử dụng nrams để lấy ra từ có trọng số lớn nhất.
+	clean_text = basic_clean(text)#tiền xử lí text qua hàm basic_clean
+	return (pd.Series(ngrams(clean_text, 1)).value_counts())[:1] #sử dụng nrams, hàm calue_counts để lấy ra từ có trọng số lớn nhất.
