@@ -1,9 +1,12 @@
 from collections import Counter
 import math
+import re
 
 f = open("stop_words.txt") #data.txt
 lines = f.readlines()
 f.close()
+
+regex = re.compile('[^a-zA-Z]+') 
 
 stop_words = []
 for line in lines:
@@ -52,7 +55,7 @@ def preprocess_titles(titles):
 
 	for title in titles:
 		for word in title.split():
-			if len(word) >= 3 and word.lower() not in stop_words and word[-1] not in stop_words:
+			if len(word) >= 3 and word.lower() not in stop_words and word[-1] not in stop_words and word[0] not in stop_words and regex.search(word) == None:
 				sen += word.lower() + " "
 		processed_titles.append("".join(sen.rstrip().lstrip()))
 		sen = ""
@@ -74,6 +77,7 @@ def get_name_of_object_in_image(titles):
 	preprocess_data(titles)
 	tf_idf_dict = tf_idf(titles)
 	res = max(tf_idf_dict, key=tf_idf_dict.get)
+	print(tf_idf_dict)
 	global tf_dict
 	global idf_dict
 	global processed_titles

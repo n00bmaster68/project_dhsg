@@ -1,10 +1,10 @@
 from ngrams import predict_main_word
 from crawl_titles import get_titles_on_web
-from natural_language_processing import get_name_of_object_in_image
+from TF_IDF import get_name_of_object_in_image
 import time
-
+ 
 if __name__ == "__main__":
-	filename= "test_img/test13.jpg"
+	filename= "apple_watch.jpg"
 	titles  = get_titles_on_web(filename)
 	print(len(titles))
 
@@ -20,4 +20,3 @@ if __name__ == "__main__":
 	name2 = list(name2.keys())
 	print(name1, ",time: ", p_time1)
 	print(name2[0][0], ",time: ", p_time2)
-	
