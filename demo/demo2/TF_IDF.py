@@ -55,7 +55,7 @@ def preprocess_titles(titles):
 
 	for title in titles:
 		for word in title.split():
-			if len(word) >= 3 and word.lower() not in stop_words and word[-1] not in stop_words and word[0] not in stop_words and regex.search(word) == None:
+			if len(word) >= 3 and word.lower() not in stop_words  and regex.search(word) == None and re.search("[a-z]+ed", word) == None and re.search("[a-z]+ing", word) == None and re.search("[a-z]+tion", word) == None and re.search("[a-z]+ty", word) == None:
 				sen += word.lower() + " "
 		processed_titles.append("".join(sen.rstrip().lstrip()))
 		sen = ""
@@ -63,6 +63,7 @@ def preprocess_titles(titles):
 
 def preprocess_data(titles):
 	preprocess_titles(titles)
+	# print(processed_titles)
 	global tf_dict
 	global idf_dict
 
@@ -75,9 +76,12 @@ def preprocess_data(titles):
 
 def get_name_of_object_in_image(titles):
 	preprocess_data(titles)
+	# print()
 	tf_idf_dict = tf_idf(titles)
-	res = max(tf_idf_dict, key=tf_idf_dict.get)
-	print(tf_idf_dict)
+	res = None
+	if tf_idf_dict != {}:
+		res = max(tf_idf_dict, key=tf_idf_dict.get)
+		print(tf_idf_dict)
 	global tf_dict
 	global idf_dict
 	global processed_titles

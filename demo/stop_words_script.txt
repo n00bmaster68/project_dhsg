@@ -1,0 +1,15 @@
+f = open("stop_words.txt") #data.txt
+lines = f.readlines()
+f.close()
+
+stop_words = []
+for line in lines:
+	stop_words.append((line.strip('\n')).lower())
+
+stop_words = list(set(stop_words))
+
+print(len(stop_words))
+
+f=open('stop_words.txt','w')
+for ele in stop_words:
+	f.write(ele+'\n')

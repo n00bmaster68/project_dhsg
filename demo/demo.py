@@ -7,6 +7,7 @@ if __name__ == "__main__":
 	filename= "apple_watch.jpg"
 	titles  = get_titles_on_web(filename)
 	print(len(titles))
+	print(titles)
 
 	start1 = time.time()
 	name1   = get_name_of_object_in_image(titles)
